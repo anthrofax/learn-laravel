@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anthrofax | Posts</title>
-</head>
-<body>
-    <h1>Posts</h1>
-</body>
-</html>
+@extends('layouts.main')
+
+@section('container')
+    <?php foreach ($posts as $post) : ?>
+    <article>
+        <h2>
+            <a href="post/<?= $post['slug'] ?>"><?= $post['title'] ?></a>
+        </h2>
+        <h3>By: <?= $post['author'] ?></h3>
+        <p><?= $post['body'] ?></p>
+    </article>
+
+    <?php endforeach; ?>
+@endsection

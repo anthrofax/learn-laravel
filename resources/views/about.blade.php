@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Anthrofax | About</title>
-</head>
-<body>
+@extends('layouts.main')
+
+@section('container')
     <h1>About</h1>
-    <h3>Afridho Ikhsan</h3>
-    <p>afridhoikhsan@gmail.com</p>
-    <img src="img/myself.png" alt="Afridho" width="200">
-</body>
-</html>
+    <h3>{{ $name }}</h3>
+    <p>{{ $email }}</p>
+    <img src="img/{{ $image }}" alt="{{ $name }}" width="200">
+@endsection
