@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,20 +28,6 @@ Route::get('/about', function () {
         "image" => "myself.png"
     ]);
 });
-Route::get('/blog', function () {
-    $posts = $posts = Post::getAllPosts();
+Route::get('/blog', [PostController::class, 'index']);
 
-    return view('posts', [
-        "title" => 'Posts',
-        "posts" => $posts,
-    ]);
-});
-
-Route::get('/post/{slug}', function($slug) {
-    $post = Post::getPostBySlug($slug);
-
-    return view('post', [
-        'title' => $post['title'],
-        "post" => $post
-    ]);
-});
+Route::get('/post/{slug}', [PostController::class, 'show']);

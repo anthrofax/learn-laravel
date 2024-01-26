@@ -26,19 +26,14 @@ class Post extends Model
 
     public static function getAllPosts()
     {
-        return self::$posts;
+        return collect(self::$posts);
     }
 
     public static function getPostBySlug($slug)
     {
-        $post = [];
-        foreach (self::$posts as $p) {
-            if ($p['slug'] === $slug) {
-                $post = $p;
-            }
-        }
+        $posts = static::getAllPosts();
 
-        return $post;
+        return $posts->firstWhere('slug', $slug);
     }
 }
 
