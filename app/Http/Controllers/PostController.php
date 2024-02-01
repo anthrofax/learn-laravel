@@ -8,7 +8,7 @@ use App\Models\Post;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::getAllPosts();
+        $posts = Post::all();
 
         return view('posts', [
             "title" => 'Posts',
@@ -16,9 +16,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function show($slug) {
-        $post = Post::getPostBySlug($slug);
-
+    public function show(Post $post) {
         return view('post', [
             'title' => $post['title'],
             "post" => $post
