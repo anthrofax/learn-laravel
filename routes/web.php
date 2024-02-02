@@ -34,28 +34,12 @@ Route::get('/about', function () {
 });
 Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/post/{post:slug}', [PostController::class, 'show']);
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Categories',
         'active' => 'categories',
         'categories' => Category::all()
-    ]);
-});
-
-Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'title' => 'Post by category: '.$category->name,
-        'active' => 'categories',
-        'posts' => $category->posts->load('author', 'category')
-    ]);
-});
-
-Route::get('/author/{author:username}', function(User $author) {
-    return view('posts', [
-        'title' => 'Post by author: '. $author->name,
-        'active'=> 'posts',
-        'posts' => $author->posts->load('category', 'author'),
     ]);
 });
