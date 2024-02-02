@@ -42,16 +42,15 @@ Route::get('/categories', function () {
 });
 
 Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('category', [
-        'title' => 'Post Category',
-        'name' => $category->name,
-        'posts' => $category->posts
+    return view('posts', [
+        'title' => 'Post by category: '.$category->name,
+        'posts' => $category->posts->load('author', 'category')
     ]);
 });
 
 Route::get('author/{author:username}', function(User $author) {
     return view('posts', [
-        'title' => 'Daftar unggahan pengguna',
-        'posts' => $author->posts,
+        'title' => 'Post by author: '. $author->name,
+        'posts' => $author->posts->load('category', 'author'),
     ]);
 });
