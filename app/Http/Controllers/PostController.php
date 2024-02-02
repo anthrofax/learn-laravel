@@ -12,6 +12,7 @@ class PostController extends Controller
 
         return view('posts', [
             "title" => 'All posts',
+            'active'=> 'posts',
             "posts" => $posts,
         ]);
     }
@@ -19,6 +20,7 @@ class PostController extends Controller
     public function show(Post $post) {
         return view('post', [
             'title' => $post['title'],
+            'active'=> 'posts',
             "post" => $post,
             'category' => $post->category
         ]);
