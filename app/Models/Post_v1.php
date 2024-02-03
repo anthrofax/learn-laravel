@@ -24,12 +24,12 @@ class Post extends Model
         ],
     ];
 
-    public static function getAllPosts()
+    public static function all()
     {
         return collect(self::$posts);
     }
 
-    public static function getPostBySlug($slug)
+    public static function find($slug)
     {
         $posts = static::getAllPosts();
 
