@@ -8,7 +8,7 @@
     <div class="col-lg-8">
         <form method="post" action="/dashboard/posts">
             <div class="mb-3">
-                <label for="title" class="form-label">Email address</label>
+                <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" id="title" name="title">
             </div>
             <div class="mb-3">
@@ -18,4 +18,14 @@
             <button type="submit" class="btn btn-primary">Create Post</button>
         </form>
     </div>
+    <script>
+        const title = document.querySelector('#title');
+        const slug = document.querySelector('#slug');
+
+        title.addEventListener('change', function() {
+            fetch('/dashboard/posts/checkSlug?title=' + title.value).then(response => response.json()).then(data =>
+                slug.value = data
+                .slug);
+        })
+    </script>
 @endsection
