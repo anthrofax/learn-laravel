@@ -9,7 +9,7 @@
         <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new post</a>
         @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
-               {{session('success')}}
+                {{ session('success') }}
             </div>
         @endif
         <table class="table table-striped table-sm">
@@ -34,9 +34,13 @@
                             <a href="" class="badge bg-warning">
                                 <span data-feather="edit"></span>
                             </a>
-                            <a href="" class="badge bg-danger">
-                                <span data-feather="trash"></span>
-                            </a>
+                            <form action="/dashboard/posts/{{$post->slug}}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+
+                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure want to delete this post?')"><span data-feather="trash"></span>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
