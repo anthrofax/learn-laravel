@@ -8,7 +8,7 @@
     <div class="col-lg-8">
         <a href="/dashboard/posts" class="btn btn-success mb-3"><span data-feather="arrow-left"></span> Back to my post</a>
 
-        <form method="post" action="/dashboard/posts" class="mb-5">
+        <form method="post" action="/dashboard/posts" class="mb-5" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
@@ -49,6 +49,10 @@
                     @enderror
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Post Image</label>
+                <input class="form-control" type="file" name="image" id="image">
+              </div>
             <div class="mb-3">
                 <label for="body" class="form-label @error('body') is-invalid @enderror">Body</label>
                 <input id="body" type="hidden" name="body" value="{{ old('body') }}">
