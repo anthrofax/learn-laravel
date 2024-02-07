@@ -7,6 +7,11 @@
 
     <div class="table-responsive small">
         <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new post</a>
+        @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+               {{session('success')}}
+            </div>
+        @endif
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -23,7 +28,7 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>
-                            <a href="/dashboard/posts/{{$post->slug}}" class="badge bg-info">
+                            <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info">
                                 <span data-feather="eye"></span>
                             </a>
                             <a href="" class="badge bg-warning">
