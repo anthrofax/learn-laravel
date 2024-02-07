@@ -6,8 +6,12 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="post" action="/dashboard/posts" class="mb-5">
+        <a href="/dashboard/posts" class="btn btn-success mb-3"><span data-feather="arrow-left"></span> Back to my post</a>
+
+        <form method="post" action="/dashboard/posts/{{$post->slug}}" class="mb-5">
             @csrf
+            @method('put')
+
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"

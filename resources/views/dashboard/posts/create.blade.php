@@ -6,6 +6,8 @@
     </div>
 
     <div class="col-lg-8">
+        <a href="/dashboard/posts" class="btn btn-success mb-3"><span data-feather="arrow-left"></span> Back to my post</a>
+
         <form method="post" action="/dashboard/posts" class="mb-5">
             @csrf
             <div class="mb-3">
