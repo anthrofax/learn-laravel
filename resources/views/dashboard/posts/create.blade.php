@@ -10,7 +10,8 @@
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required autofocus>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                    value="{{ old('title') }}"  autofocus>
                 @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -19,7 +20,8 @@
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label @error('slug') is-invalid @enderror">Slug</label>
-                <input type="text" class="form-control" id="slug" name="slug" required>
+                <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}"
+                    >
                 @error('slug')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -29,9 +31,14 @@
 
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
-                <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="category" required>
+                <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="category"
+                    required>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @if ($category->id == old('category_id'))
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                        @else
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endif
                     @endforeach
                     @error('category_id')
                         <div class="invalid-feedback">
@@ -42,7 +49,7 @@
             </div>
             <div class="mb-3">
                 <label for="body" class="form-label @error('body') is-invalid @enderror">Body</label>
-                <input id="body" type="hidden" name="body" >
+                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>
                 @error('body')
                     <div class="invalid-feedback">
