@@ -53,6 +53,7 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Post Image</label>
+            <input type="hidden" name="oldImage" value="{{$post->image}}">
             <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
                 id="image" onchange="previewImage()" />
             @if ($post->image)
