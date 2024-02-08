@@ -12,8 +12,8 @@
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                    value="{{ old('title') }}"  autofocus>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                    name="title" value="{{ old('title') }}" autofocus>
                 @error('title')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -22,8 +22,7 @@
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label @error('slug') is-invalid @enderror">Slug</label>
-                <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}"
-                    >
+                <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}">
                 @error('slug')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -51,8 +50,16 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
-                <input class="form-control" type="file" name="image" id="image">
-              </div>
+                <input class="form-control @error('image') is-invalid  @enderror" type="file" name="image"
+                    id="image" onchange="previewImage()">
+                <img class="img-preview img-fluid mt-3 col-sm-5">
+
+                @error('image')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             <div class="mb-3">
                 <label for="body" class="form-label @error('body') is-invalid @enderror">Body</label>
                 <input id="body" type="hidden" name="body" value="{{ old('body') }}">
@@ -80,5 +87,19 @@
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault();
         })
+
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imagePreview = document.querySelector('.img-preview');
+
+            imagePreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imagePreview.src = oFREvent.target.result;
+            }
+        }
     </script>
 @endsection
